@@ -24,13 +24,14 @@ func InitDB() {
 	user := os.Getenv("DATABASE_USER")
 	password := os.Getenv("DATABASE_PASSWORD")
 	dbName := os.Getenv("DATABASE_NAME")
+	port := os.Getenv("DATABASE_PORT")
 
 	// Periksa apakah semua variabel lingkungan telah diatur
-	if host == "" || user == "" || password == "" || dbName == "" {
+	if host == "" || user == "" || password == "" || dbName == "" || port == "" {
 		panic("One or more environment variables are not set")
 	}
 
-	dataSourceName := fmt.Sprintf("%s:%s@tcp(%s)/%s?charset=utf8&parseTime=True&loc=Local", user, password, host, dbName)
+	dataSourceName := fmt.Sprintf("%s:%s@tcp(%s:%s)/%s?charset=utf8&parseTime=True&loc=Local", user, password, host, port, dbName)
 
 	conn, err := gorm.Open("mysql", dataSourceName)
 	if err != nil {

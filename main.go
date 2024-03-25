@@ -33,21 +33,21 @@ func main() {
 
 	r.HandleFunc("/photos", handlers.CreatePhoto).Methods("POST")
 	r.HandleFunc("/photos", handlers.GetAllPhotos).Methods("GET")
-	// r.HandleFunc("/photos/{photoID}", handlers.GetPhotoByID).Methods("GET")
-	// r.HandleFunc("/photos/{photoID}", handlers.UpdatePhotoByID).Methods("PUT")
-	// r.HandleFunc("/photos/{photoID}", handlers.DeletePhotoByID).Methods("DELETE")
+	r.HandleFunc("/photos/{photoID}", handlers.GetPhotoByID).Methods("GET")
+	r.HandleFunc("/photos/{photoID}", handlers.UpdatePhotoByID).Methods("PUT")
+	r.HandleFunc("/photos/{photoID}", handlers.DeletePhotoByID).Methods("DELETE")
 
 	r.HandleFunc("/comments", handlers.CreateComment).Methods("POST")
 	r.HandleFunc("/comments", handlers.GetAllComments).Methods("GET")
-	// r.HandleFunc("/comments/{commentID}", handlers.GetCommentByID).Methods("GET")
-	// r.HandleFunc("/comments/{commentID}", handlers.UpdateCommentByID).Methods("PUT")
-	// r.HandleFunc("/comments/{commentID}", handlers.DeleteCommentByID).Methods("DELETE")
+	r.HandleFunc("/comments/{commentID}", handlers.GetCommentByID).Methods("GET")
+	r.HandleFunc("/comments/{commentID}", handlers.UpdateCommentByID).Methods("PUT")
+	r.HandleFunc("/comments/{commentID}", handlers.DeleteCommentByID).Methods("DELETE")
 
 	r.HandleFunc("/socialmedias", handlers.CreateSocialMediaEntry).Methods("POST")
 	r.HandleFunc("/socialmedias", handlers.GetAllSocialMediaEntries).Methods("GET")
-	// r.HandleFunc("/socialmedias/{socialMediaID}", handlers.GetSocialMediaEntryByID).Methods("GET")
-	// r.HandleFunc("/socialmedias/{socialMediaID}", handlers.UpdateSocialMediaEntryByID).Methods("PUT")
-	// r.HandleFunc("/socialmedias/{socialMediaID}", handlers.DeleteSocialMediaEntryByID).Methods("DELETE")
+	r.HandleFunc("/socialmedias/{socialMediaID}", handlers.GetSocialMediaEntryByID).Methods("GET")
+	r.HandleFunc("/socialmedias/{socialMediaID}", handlers.UpdateSocialMediaEntryByID).Methods("PUT")
+	r.HandleFunc("/socialmedias/{socialMediaID}", handlers.DeleteSocialMediaEntryByID).Methods("DELETE")
 
 	// Start server
 	fmt.Println("Server started at localhost:8080")
