@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+	"os"
 
 	"github.com/faazabilamri7/mygram/database"
 	"github.com/faazabilamri7/mygram/handlers"
@@ -53,8 +54,14 @@ func main() {
 	r.HandleFunc("/socialmedias/{socialMediaID}", handlers.DeleteSocialMediaEntryByID).Methods("DELETE")
 
 	// Start server
-	fmt.Println("Server started at localhost:443")
-	log.Fatal(http.ListenAndServeTLS(":443", "cert.pem", "key.pem", r))
+	// Start server
+	port := os.Getenv("PORT")
+	if port == "" {
+		port = "8080" // Default port
+	}
+	addr := fmt.Sprintf(":%s", port)
+	fmt.Printf("Server started at %s\n", addr)
+	log.Fatal(http.ListenAndServe(addr, r))
 }
 
 func welcomeMessage(w http.ResponseWriter, r *http.Request) {
