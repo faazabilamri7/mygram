@@ -53,8 +53,8 @@ func main() {
 	r.HandleFunc("/socialmedias/{socialMediaID}", handlers.DeleteSocialMediaEntryByID).Methods("DELETE")
 
 	// Start server
-	fmt.Println("Server started at localhost:80")
-	log.Fatal(http.ListenAndServe(":80", r))
+	fmt.Println("Server started at localhost:443")
+	log.Fatal(http.ListenAndServeTLS(":443", "cert.pem", "key.pem", r))
 }
 
 func welcomeMessage(w http.ResponseWriter, r *http.Request) {
