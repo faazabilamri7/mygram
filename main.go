@@ -25,6 +25,9 @@ func main() {
 
 	r := mux.NewRouter()
 
+	//Welcome
+	r.HandleFunc("/", welcomeMessage).Methods("GET")
+
 	// Register API endpoints
 	r.HandleFunc("/users/register", handlers.RegisterUser).Methods("POST")
 	r.HandleFunc("/users/login", handlers.LoginUser).Methods("POST")
@@ -52,4 +55,8 @@ func main() {
 	// Start server
 	fmt.Println("Server started at localhost:8080")
 	log.Fatal(http.ListenAndServe(":8080", r))
+}
+
+func welcomeMessage(w http.ResponseWriter, r *http.Request) {
+	fmt.Fprintf(w, "Selamat datang, myGram app Faaza bil amri, Golang 004, Newbie")
 }
